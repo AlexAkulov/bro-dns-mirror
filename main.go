@@ -27,6 +27,7 @@ func main() {
 		Location: &tail.SeekInfo{
 			Whence: os.SEEK_END,
 		},
+		ReOpen: true,
 		Follow: true,
 	})
 	if err != nil {
@@ -71,8 +72,8 @@ func query(line string) {
 		fmt.Println("Bad line: line")
 		return
 	}
-	if _,  err := resolver.LookupHost(items[9]); err != nil {
-		fmt.Println("ERROR: ", err)
+	if strings.HasSuffix(items[9], "kontur.ru") {
 		return
 	}
+	resolver.LookupHost(items[9])
 }
